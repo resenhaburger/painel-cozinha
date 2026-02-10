@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Painel da Cozinha - ResenhaBurger</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="cozinha.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <header class="cozinha-header">
+            <div class="logo">
+                <h1><i class="fas fa-utensils"></i> COZINHA RESENHA</h1>
+                <p class="subtitle">Controle de Produção Inteligente</p>
+            </div>
+            
+            <div class="cozinha-status">
+                <div class="status-indicators">
+                    <div class="status-box em-producao">
+                        <i class="fas fa-fire"></i>
+                        <span class="count" id="count-em-producao">0</span>
+                        <span class="label">Em Produção</span>
+                    </div>
+                    
+                    <div class="status-box proximos">
+                        <i class="fas fa-clock"></i>
+                        <span class="count" id="count-proximos">0</span>
+                        <span class="label">Próximos 30min</span>
+                    </div>
+                    
+                    <div class="status-box entrega">
+                        <i class="fas fa-motorcycle"></i>
+                        <span class="count" id="count-entrega">0</span>
+                        <span class="label">Saiu para Entrega</span>
+                    </div>
+                </div>
+                
+                <div class="time-control">
+                    <div class="current-time">
+                        <i class="fas fa-clock"></i>
+                        <span id="current-time">--:--</span>
+                    </div>
+                    <div class="auto-close">
+                        <i class="fas fa-door-closed"></i>
+                        <span>Fecha às 22:30</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- ALARMES -->
+        <div class="alarm-container" id="alarm-container">
+            <!-- Alarme será inserido aqui -->
+        </div>
+
+        <!-- FILTROS -->
+        <div class="filters">
+            <button class="filter-btn active" onclick="filterPedidos('all')">
+                <i class="fas fa-list"></i> Todos
+            </button>
+            <button class="filter-btn" onclick="filterPedidos('em_producao')">
+                <i class="fas fa-fire"></i> Em Produção
+            </button>
+            <button class="filter-btn" onclick="filterPedidos('pronto')">
+                <i class="fas fa-check-circle"></i> Prontos
+            </button>
+            <button class="filter-btn" onclick="filterPedidos('entrega')">
+                <i class="fas fa-motorcycle"></i> Entrega
+            </button>
+        </div>
+
+        <!-- LISTA DE PEDIDOS -->
+        <div class="pedidos-container" id="pedidos-container">
+            <!-- Pedidos serão carregados aqui -->
+        </div>
+
+        <!-- TEMPLATE DE PEDIDO (hidden) -->
+        <template id="pedido-template">
+            <div class="pedido-card" data-status="">
+                <div class="pedido-header">
+                    <div class="pedido-id">
+                        <h3>#<span class="pedido-number">0000</span></h3>
+                        <span class="pedido-time">--:--</span>
+                    </div>
+                    
+                    <div class="pedido-status">
+                        <span class="status-badge"></span>
+                        <span class="status-text"></span>
+                    </div>
+                    
+                    <div class="pedido-timer">
+                        <i class="fas fa-hourglass-half"></i>
+                        <span class="timer-text">--:--</span>
+                    </div>
+                </div>
+                
+                <div class="pedido-cliente">
+                    <i class="fas fa-user"></i>
+                    <span class="cliente-nome">Cliente</span>
+                    <span class="cliente-telefone">(XX) XXXXX-XXXX</span>
+                </div>
+                
+                <div class="pedido-itens">
+                    <!-- Itens serão inseridos -->
+                </div>
+                
+                <div class="pedido-observacoes">
+                    <i class="fas fa-sticky-note"></i>
+                    <span class="obs-text">Sem observações</span>
+                </div>
+                
+                <div class="pedido-actions">
+                    <button class="action-btn iniciar" onclick="atualizarStatus('', 'em_producao')">
+                        <i class="fas fa-play"></i> Iniciar
+                    </button>
+                    <button class="action-btn finalizar" onclick="atualizarStatus('', 'pronto')">
+                        <i class="fas fa-check"></i> Finalizar
+                    </button>
+                    <button class="action-btn entregar" onclick="atualizarStatus('', 'entrega')">
+                        <i class="fas fa-motorcycle"></i> Entregar
+                    </button>
+                </div>
+            </div>
+        </template>
+    </div>
+
+    <!-- ALARME SONORO (hidden) -->
+    <audio id="alarm-sound" preload="auto">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-alarm-digital-clock-beep-989.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="cozinha.js"></script>
+</body>
+</html>
