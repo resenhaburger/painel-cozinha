@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin ResenhaBurger</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+    <style>
+        .dashboard-container { padding: 20px; }
+        .login-container { max-width: 300px; margin: 100px auto; }
+        .nav-tabs { display: flex; gap: 10px; margin-bottom: 20px; }
+        .nav-tabs a { cursor: pointer; padding: 10px; background: #333; color: white; border-radius: 5px; }
+        .tab { display: none; }
+        .tab.active { display: block; }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <h1>Painel Administrativo</h1>
+        <div id="login" class="login-container">
+            <input type="password" id="senha" placeholder="Senha" class="form-control">
+            <button onclick="login()" class="btn btn-primary mt-2">Entrar</button>
+        </div>
+        <div id="admin-content" style="display:none;">
+            <div class="nav-tabs">
+                <a data-tab="produtos">Produtos</a>
+                <a data-tab="pedidos">Pedidos</a>
+                <a data-tab="clientes">Clientes</a>
+                <a data-tab="config">Configurações</a>
+            </div>
+            <div id="tab-produtos" class="tab"></div>
+            <div id="tab-pedidos" class="tab"></div>
+            <div id="tab-clientes" class="tab"></div>
+            <div id="tab-config" class="tab"></div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>
